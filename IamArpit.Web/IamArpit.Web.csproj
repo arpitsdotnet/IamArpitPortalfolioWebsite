@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IamArpit.Web</RootNamespace>
     <AssemblyName>IamArpit.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -25,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,16 +48,20 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -102,6 +106,19 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Abstractions.5.11.1\lib\net45\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Container.5.11.1\lib\net45\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc.5.11.1\lib\net45\Unity.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -112,14 +129,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Areas\Customers\CustomersAreaRegistration.cs" />
+    <Compile Include="Areas\Identity\IdentityAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -127,27 +143,126 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Resources\Content\bootstrap-theme.css" />
+    <Content Include="Resources\Content\bootstrap-theme.min.css" />
+    <Content Include="Resources\Content\bootstrap.css" />
+    <Content Include="Resources\Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Resources\Content\carousel.css" />
+    <Content Include="Resources\Content\font-awesome.min.css" />
+    <Content Include="Resources\fonts\flaticon.css" />
+    <Content Include="Resources\fonts\Flaticon.svg" />
+    <Content Include="Resources\fonts\fontawesome-webfont.svg" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Resources\Content\Site.css" />
+    <Content Include="Resources\images\apple-touch-icon.png" />
+    <Content Include="Resources\images\biglogo.png" />
+    <Content Include="Resources\images\dummy.png" />
+    <Content Include="Resources\images\favicon.ico" />
+    <Content Include="Resources\images\iamarpit_logo.png" />
+    <Content Include="Resources\images\logo.png" />
+    <Content Include="Resources\images\logo-normal.png" />
+    <Content Include="Resources\images\logo-dark.png" />
+    <Content Include="Resources\images\logo%402x.png" />
+    <Content Include="Resources\images\logo-dark_genius.png" />
+    <Content Include="Resources\images\logo_genius.png" />
+    <Content Include="Resources\images\menubg.jpg" />
+    <Content Include="Resources\images\pattern.png" />
+    <Content Include="Resources\images\payments.png" />
+    <Content Include="Resources\images\upload\01_team.png" />
+    <Content Include="Resources\images\upload\02_team.png" />
+    <Content Include="Resources\images\upload\03_team.png" />
+    <Content Include="Resources\images\upload\blog_01.jpg" />
+    <Content Include="Resources\images\upload\blog_02.jpg" />
+    <Content Include="Resources\images\upload\blog_03.jpg" />
+    <Content Include="Resources\images\upload\client_01.png" />
+    <Content Include="Resources\images\upload\client_02.png" />
+    <Content Include="Resources\images\upload\client_03.png" />
+    <Content Include="Resources\images\upload\client_04.png" />
+    <Content Include="Resources\images\upload\client_05.png" />
+    <Content Include="Resources\images\upload\desc_work_01.png" />
+    <Content Include="Resources\images\upload\desc_work_02.png" />
+    <Content Include="Resources\images\upload\desc_work_03.png" />
+    <Content Include="Resources\images\upload\desc_work_04.png" />
+    <Content Include="Resources\images\upload\desc_work_05.jpeg" />
+    <Content Include="Resources\images\upload\desc_work_05.png" />
+    <Content Include="Resources\images\upload\desc_work_06.png" />
+    <Content Include="Resources\images\upload\desc_work_07.png" />
+    <Content Include="Resources\images\upload\desc_work_08.png" />
+    <Content Include="Resources\images\upload\desc_work_09.png" />
+    <Content Include="Resources\images\upload\desc_work_10.png" />
+    <Content Include="Resources\images\upload\desc_work_11.png" />
+    <Content Include="Resources\images\upload\desc_work_12.png" />
+    <Content Include="Resources\images\upload\device_01.png" />
+    <Content Include="Resources\images\upload\device_02.png" />
+    <Content Include="Resources\images\upload\man.png" />
+    <Content Include="Resources\images\upload\modal_01.jpg" />
+    <Content Include="Resources\images\upload\modal_02.jpg" />
+    <Content Include="Resources\images\upload\modal_03.jpg" />
+    <Content Include="Resources\images\upload\modal_04.jpg" />
+    <Content Include="Resources\images\upload\modal_05.jpg" />
+    <Content Include="Resources\images\upload\modal_06.jpg" />
+    <Content Include="Resources\images\upload\p1.jpg" />
+    <Content Include="Resources\images\upload\parallax_01.jpg" />
+    <Content Include="Resources\images\upload\parallax_02.jpg" />
+    <Content Include="Resources\images\upload\parallax_03.jpg" />
+    <Content Include="Resources\images\upload\slider_01.jpg" />
+    <Content Include="Resources\images\upload\slider_02.jpg" />
+    <Content Include="Resources\images\upload\slider_03.jpg" />
+    <Content Include="Resources\images\upload\slider_04.jpg" />
+    <Content Include="Resources\images\upload\slider_05.jpg" />
+    <Content Include="Resources\images\upload\testimonial_01.png" />
+    <Content Include="Resources\images\upload\testimonial_02.png" />
+    <Content Include="Resources\images\upload\testimonial_03.png" />
+    <Content Include="Resources\images\upload\work_01.jpg" />
+    <Content Include="Resources\images\upload\work_02.jpg" />
+    <Content Include="Resources\images\upload\work_03.jpg" />
+    <Content Include="Resources\images\upload\work_04.jpg" />
+    <Content Include="Resources\images\upload\work_05.jpg" />
+    <Content Include="Resources\images\upload\work_06.jpg" />
+    <Content Include="Resources\images\upload\work_07.jpg" />
+    <Content Include="Resources\Scripts\bootstrap.js" />
+    <Content Include="Resources\Scripts\bootstrap.min.js" />
+    <Content Include="Resources\fonts\Flaticon.eot" />
+    <Content Include="Resources\fonts\Flaticon.ttf" />
+    <Content Include="Resources\fonts\Flaticon.woff" />
+    <Content Include="Resources\fonts\fontawesome-webfont.eot" />
+    <Content Include="Resources\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Resources\fonts\fontawesome-webfont.woff" />
+    <Content Include="Resources\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Resources\fonts\FontAwesome.otf" />
+    <Content Include="Resources\fonts\_flaticon.scss" />
+    <Content Include="Resources\images\logo.psd" />
+    <Content Include="Areas\Customers\Views\web.config" />
+    <Content Include="Areas\Identity\Views\web.config" />
+    <None Include="Resources\Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Resources\Scripts\carousel.js" />
+    <Content Include="Resources\Scripts\custom.js" />
+    <Content Include="Resources\Scripts\jquery-3.4.1.js" />
+    <Content Include="Resources\Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Resources\Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Resources\Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Resources\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Resources\Scripts\jquery.validate.js" />
+    <Content Include="Resources\Scripts\jquery.validate.min.js" />
+    <Content Include="Resources\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Resources\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Resources\Scripts\masonry-3-col.js" />
+    <Content Include="Resources\Scripts\masonry-4-col.js" />
+    <Content Include="Resources\Scripts\masonry.js" />
+    <Content Include="Resources\Scripts\modernizr-2.8.3.js" />
+    <Content Include="Resources\Scripts\parallax.js" />
+    <Content Include="Resources\Scripts\progress.js" />
+    <Content Include="Resources\Scripts\revslider.js" />
+    <Content Include="Resources\Scripts\rotate.js" />
+    <Content Include="Resources\Scripts\vendor\html5shiv.js" />
+    <Content Include="Resources\Scripts\vendor\respond.min.js" />
+    <Content Include="Resources\videos\libs\jquery-1.6.2.min.js" />
+    <Content Include="Resources\videos\libs\modernizr.video.js" />
+    <Content Include="Resources\videos\libs\swfobject.js" />
+    <Content Include="Resources\videos\libs\video_background.js" />
+    <Content Include="Resources\videos\video.mp4" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -164,21 +279,32 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Customers\Controllers\" />
+    <Folder Include="Areas\Customers\Data\" />
+    <Folder Include="Areas\Customers\Views\Shared\" />
+    <Folder Include="Areas\Identity\Controllers\" />
+    <Folder Include="Areas\Identity\Data\" />
+    <Folder Include="Areas\Identity\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Resources\Content\bootstrap.min.css.map" />
+    <Content Include="Resources\Content\bootstrap.css.map" />
+    <Content Include="Resources\Content\bootstrap-theme.min.css.map" />
+    <Content Include="Resources\Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Resources\Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Resources\Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IamArpit.Database\IamArpit.Database.csproj">
+      <Project>{0c7a63ca-994d-4794-8f5c-e9ce0bed02e9}</Project>
+      <Name>IamArpit.Database</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -208,12 +334,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

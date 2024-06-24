@@ -9,22 +9,32 @@ namespace IamArpit.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Resources/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/Resources/Scripts/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                        "~/Resources/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Resources/Scripts/bootstrap.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/others").Include(
+                      "~/Resources/Scripts/carousel.js",
+                      "~/Resources/Scripts/parallax.js",
+                      "~/Resources/Scripts/rotate.js",
+                      "~/Resources/Scripts/masonry.js",
+                      "~/Resources/Scripts/masonry-4-col.js",
+                      "~/Resources/Scripts/custom.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Resources/Content/bootstrap.css",
+                      "~/Resources/Content/font-awesome.min.css",
+                      "~/Resources/Content/carousel.css",
+                      "~/Resources/Content/site.css"));
         }
     }
 }

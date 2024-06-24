@@ -1,42 +1,246 @@
 ﻿<!DOCTYPE html>
-<html>
+
+<!--[if IE 9]> <html class="no-js ie9 fixed-layout" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js " lang="en">
+<!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Site Meta -->
+    <title>@ViewBag.Title IamArpit.in || Freelancer, Developer, Designer</title>
+    <meta name="keywords" content="Freelancer, Developer, Designer, Bhopal, Madhya Pradesh, DotNet Developer, .NET Developer, C#.NET Developer, C# Developer, MVC Developer">
+    <meta name="description" content="I am a freelancer, a .Net developer, a graphic designer, a husband and a father. Contact me to get my services hello@iamarpit.in">
+    <meta name="author" content="Arpit Shrivastava">
+
+    <!-- Site Icons -->
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/Resources/images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/Resources/images/apple-favicon.png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+<body class="left-menu">
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+        </div>*@
+
+    <div class="menu-wrapper">
+        <div class="mobile-menu">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="/Resources/images/logo-normal.png" alt=""></a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                            <li><a href="@Url.Action("Index","About")">About</a></li>
+                            <li><a href="@Url.Action("Index","Portfolio")">Portfolio</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop <span class="fa fa-angle-down"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Coming Soon</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="@Url.Action("Index","Contact")">Contact</a></li>
+                        </ul>
+                        @*<ul class="nav navbar-nav navbar-right">
+                                <li><a href="https://html.design">Download <i class="fa fa-shopping-bag"></i></a></li>
+                            </ul>*@
+                    </div><!--/.nav-collapse -->
+                </div><!--/.container-fluid -->
+            </nav>
+        </div><!-- end mobile-menu -->
+
+        <header class="vertical-header">
+            <div class="vertical-header-wrapper">
+                <nav class="nav-menu">
+                    <div class="logo">
+                        <a href="@Url.Action("Index","Home")"><img src="/Resources/images/logo.png" alt=""></a>
+                    </div><!-- end logo -->
+
+                    <div class="margin-block"></div>
+
+                    <ul class="primary-menu">
+                        <li class="child-menu"><a href="@Url.Action("Index","Home")">Home</a></li>
+                        <li class="child-menu"><a href="@Url.Action("Index","About")">About</a></li>
+                        <li class="child-menu"><a href="@Url.Action("Index","Portfolio")">Portfolio</a></li>
+                        <li class="child-menu">
+                            <a href="#">Shop <i class="fa fa-angle-right"></i></a>
+                            <div class="sub-menu-wrapper">
+                                <ul class="sub-menu center-content">
+                                    <li>Coming Soon</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="@Url.Action("Index","Contact")">Contact</a></li>
+                        @*<li><a href="https://html.design">Download <i class="fa fa-shopping-bag"></i></a></li>*@
+                    </ul>
+
+                    @*<div class="margin-block"></div>
+
+                            <div class="menu-search">
+                            <form>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="What you are looking?">
+                                    <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>*@<!-- end menu-search -->
+
+                    <div class="margin-block"></div>
+                    <div class="margin-block"></div>
+
+                    <div class="menu-social">
+                        <ul class="list-inline text-center">
+                            <li><a target="_blank" href="https://facebook.com/arpit.shrivastava"><i class="fa fa-facebook"></i></a></li>
+                            <li><a target="_blank" href="https://www.linkedin.com/in/arpitshrivastava"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a target="_blank" href="https://twitter.com/arpitcsgec"><i class="fa fa-twitter"></i></a></li>
+                            @*<li><a href="#"><i class="fa fa-instagram"></i></a></li>*@
+                        </ul>
+                    </div><!-- end menu -->
+                </nav><!-- end nav-menu -->
+            </div><!-- end vertical-header-wrapper -->
+        </header><!-- end header -->
+    </div><!-- end menu-wrapper -->
+
+    <div id="wrapper">
+        
+            @RenderBody()
+
+        @*<div class="margin-block"></div>*@
+        <section class="section bgcolor">
+            <div class="container">
+                <a href="#">
+                    <div class="row callout">
+                        <div class="col-md-4 text-center">
+                            <h3><sup>₹</sup>14,990</h3>
+                            <h4>Start your awesome project today!</h4>
+                        </div><!-- end col -->
+
+                        <div class="col-md-8">
+                            <p class="lead">Limited time offer! Your Agency profile will be added to our "Agencies" directory as well. </p>
+                        </div>
+                    </div><!-- end row -->
+                </a>
+            </div><!-- end container -->
+        </section>
+
+        <footer class="section footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="widget clearfix">
+                            <div class="newsletter-widget">
+                                <p>You can opt out of our newsletters at any time.<br> See our <a href="#">privacy policy</a>.</p>
+                                <form class="form-inline" role="search">
+                                    <div class="form-1">
+                                        <input type="text" class="form-control" placeholder="Enter email here..">
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane-o"></i></button>
+                                    </div>
+                                </form>
+                            </div><!-- end newsletter -->
+                        </div><!-- end widget -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-2 col-md-4">
+                        <div class="widget clearfix">
+                            <div class="list-widget">
+                                <ul>
+                                    <li><a href="@Url.Action("Index","About")">About me</a></li>
+                                    <li><a href="@Url.Action("Index","Services")">Our Services</a></li>
+                                    <li><a href="@Url.Action("Index","Portfolio")">Our Portfolio</a></li>
+                                    <li><a href="@Url.Action("Index","Contact")">Contact us</a></li>
+                                </ul>
+                            </div><!-- end list-widget -->
+                        </div><!-- end widget -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-2 col-md-4">
+                        <div class="widget clearfix">
+                            <div class="list-widget">
+                                <ul>
+                                    <li><a href="@Url.Action("Index","Shop")">Shop</a></li>
+                                    <li><a href="@Url.Action("Index","Testimonials")">Testimonials</a></li>
+                                    <li><a href="@Url.Action("Index","Faqs")">FAQ's</a></li>
+                                </ul>
+                            </div><!-- end list-widget -->
+                        </div><!-- end widget -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-2 col-md-4">
+                        <div class="widget clearfix">
+                            <div class="list-widget">
+                                <ul>
+                                    <li><a href="@Url.Action("Index","Accounts", new { Area="Customers" })">My Account</a></li>
+                                    <li><a href="@Url.Action("Index","Orders", new { Area="Customers" })">My Orders</a></li>
+                                    <li><a href="@Url.Action("Login","Customers", new { Area="Identity" })">Login</a></li>
+                                    <li><a href="@Url.Action("Registration","Customers", new { Area="Identity" })">Register</a></li>
+                                </ul>
+                            </div><!-- end list-widget -->
+                        </div><!-- end widget -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </footer><!-- end footer -->
+
+        <div class="section copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <div class="cop-logo">
+                            <img src="images/logo-normal.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 text-right">
+                        <div class="cop-links">
+                            <ul class="list-inline">
+                                <li>&copy; 2021 iam<b>arpit</b>.in</li>
+                                <li>freelancer | developer | designer</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/others")
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
